@@ -12,13 +12,13 @@ module "server-sg" {
 
   # default CIDR block, used for all ingress rules uless stated otherwise
   # typically CIDR blocks of the VPC
-  ingress_cidr_blocks = [] 
+  ingress_cidr_blocks = []
 
   # SG ingress rules for RDP access from local machine
   ingress_with_cidr_blocks = []
 
   egress_cidr_blocks = []
-  
+
   # SG egress rules for RDP access from local machine
   egress_with_cidr_blocks = []
 }
@@ -28,17 +28,17 @@ module "ec2_instance" {
 
   name = ""
 
-  ami                    = var.rhel_9_ami # RHEL 9.4
-  instance_type          = var.instance_type
-  key_name               = var.key_pair # create a key pair in AWS
-  monitoring             = true
-  vpc_security_group_ids = [] # SG module
-  subnet_id              = "" # public subnet ID
+  ami                         = var.rhel_9_ami # RHEL 9.4
+  instance_type               = var.instance_type
+  key_name                    = var.key_pair # create a key pair in AWS
+  monitoring                  = true
+  vpc_security_group_ids      = []   # SG module
+  subnet_id                   = ""   # public subnet ID
   associate_public_ip_address = true # required for RDP access from your local machineß
 
   create_iam_instance_profile = true
   iam_role_description        = "IAM role for Redhat EC2"
-  iam_role_policies = {} # SSM policy required
+  iam_role_policies           = {} # SSM policy required
 
   # include user data after initial instance deployment
   // user_data_base64            = filebase64("")

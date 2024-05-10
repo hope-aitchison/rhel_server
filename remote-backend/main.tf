@@ -12,7 +12,7 @@ resource "aws_s3_bucket" "terraform_state_redhat_dev" {
   # Prevent accidental deletion of this S3 bucket
   lifecycle {
     prevent_destroy = true
-    }
+  }
 }
 
 resource "aws_s3_bucket_versioning" "enabled" {
@@ -29,7 +29,7 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "default" {
   rule {
     apply_server_side_encryption_by_default {
       kms_master_key_id = aws_kms_key.objects.arn
-      sse_algorithm = "aws:kms"
+      sse_algorithm     = "aws:kms"
     }
   }
 }
