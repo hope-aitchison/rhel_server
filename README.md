@@ -1,5 +1,5 @@
 ## rhel_server
-Mini project to deploy a rhel server with GUI and RDP access, and ssm agent installed
+Mini project to deploy a RHEL 9.4 EC2 instance with a GUI & SSM agent installed. Server should be accessible via both SSM and RDP. A learning exercise for real-world scenarios where different users groups will have different access methods. Similarly in knowing what configuration should be included at the AMI level, and what should be included within the instance user data. Bonus points for if else statements used, and outputting to make AMI build & cloud init logs easier for developers to read through.   
 
 ### Terraform AWS Modules used in this repository:
 https://github.com/terraform-aws-modules/terraform-aws-vpc  
