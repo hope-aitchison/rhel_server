@@ -1,3 +1,4 @@
+# upload your local IP to the AWS secret via the console
 resource "aws_secretsmanager_secret" "cidr_block" {
   name = "remote-access-ip"
 }
@@ -27,9 +28,9 @@ module "ec2_instance" {
 
   name = ""
 
-  ami                    = "ami-035cecbff25e0d91e" # RHEL 9.4
-  instance_type          = "m5.large" # additional compute required for GUI & xrdp
-  key_name               = "" # create a key pair in AWS
+  ami                    = var.rhel_9_ami # RHEL 9.4
+  instance_type          = var.instance_type
+  key_name               = var.key_pair # create a key pair in AWS
   monitoring             = true
   vpc_security_group_ids = [] # SG module
   subnet_id              = "" # public subnet ID
@@ -39,7 +40,7 @@ module "ec2_instance" {
   iam_role_description        = "IAM role for Redhat EC2"
   iam_role_policies = {} # SSM policy required
 
-  # include user data in final step
+  # include user data after initial instance deployment
   // user_data_base64            = filebase64("")
   // user_data_replace_on_change = true
 
